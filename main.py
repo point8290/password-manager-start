@@ -19,6 +19,7 @@ def search_password():
     website = str(web_input.get()).strip()
     if not website:
         messagebox.showinfo(title="Insufficient Info", message="Please provide website to search for")
+        web_input.delete(0, END)
     else:
         try:
             with open("passwords.json", "r") as file:
@@ -26,8 +27,12 @@ def search_password():
                 email = data[website]["E-mail"]
                 password = data[website]["Password"]
                 messagebox.showinfo(title=website, message=f"E-mail : {email}\nPassword : {password}")
-        except:
+                pyperclip.copy(password)
+                web_input.delete(0, END)
+
+        except FileNotFoundError:
             messagebox.showinfo(title="unable to search", message=f"{website} Not found")
+
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
