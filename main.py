@@ -1,7 +1,7 @@
 import os.path
 from tkinter import *
 from tkinter import messagebox
-
+import pyperclip
 from passwordgenerator import PWD
 
 pass_art = r"""
@@ -21,6 +21,7 @@ pass_art = r"""
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def get_password():
     password = PWD.generate_password()
+    pyperclip.copy(password)
     password_input.delete(0, END)
     password_input.insert(0, password)
 
